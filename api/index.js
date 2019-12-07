@@ -11,7 +11,6 @@ const ResultController = require('./app/controllers')
 const Mongo = require('./app/config/dbconnection')
 const mongo = new Mongo()
 try{
-    console.log('hoi')
     mongo.connect()
 }catch(err){
     console.log(err.message)
