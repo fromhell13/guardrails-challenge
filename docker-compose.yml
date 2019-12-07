@@ -1,0 +1,25 @@
+version: '3'
+services: 
+    api:
+        build: ./api
+        command: nodemon index.js
+        restart: always
+        volumes: 
+            - ./api:/app
+        ports: 
+            - '8080:8080'
+        depends_on:
+            - mongo
+    mongo:
+        image: 'mongo'
+        container_name: 'my-mongo'
+        environment: 
+            - MONGO_INITDB_DATABASE=guardrailsdb
+            - MONGO_INITDB_ROOT_USERNAME=superUser
+            - MONGO_INITDB_ROOT_PASSWORD=Zuper@2019
+        ports: 
+            - '27017:27017'
+        volumes: 
+            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+            - ./mongo-volume:/data/db
+    
