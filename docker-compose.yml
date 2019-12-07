@@ -9,6 +9,7 @@ services:
             - ./mongo-volume:/data/db
     api:
         build: ./api
+        container_name: 'my-api'
         command: nodemon index.js
         volumes: 
             - ./api:/app
@@ -16,4 +17,11 @@ services:
             - '8080:8080'
         links:
             - mongo
+    dashboard:
+        build: ./dashboard
+        container_name: 'my-dashboard'
+        ports: 
+            - '3000:3000'
+        volumes: 
+            - ./dashboard:/usr/src/app
     
