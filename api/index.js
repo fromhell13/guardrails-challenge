@@ -8,14 +8,45 @@ const app = express()
 const ResultController = require('./app/controllers')
 
 // === setup mongo connection ===
-const Mongo = require('./app/config/dbconnection')
+/*const Mongo = require('./app/config/dbconnection')
 const mongo = new Mongo()
 try{
     mongo.connect()
 }catch(err){
     console.log(err.message)
+}*/
+const mongoose = require('mongoose')
+const configDB = require('./app/config/database')
+mongoose.Promise = Promise
+
+mongoose.connection.on('connected', () => {
+  console.log('Connection Established')
+})
+
+mongoose.connection.on('reconnected', () => {
+  console.log('Connection Reestablished')
+})
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Connection Disconnected')
+})
+
+mongoose.connection.on('close', () => {
+  console.log('Connection Closed')
+})
+
+mongoose.connection.on('error', (error) => {
+  console.log('ERROR: ' + error)
+})
+
+const run = async () => {
+  await mongoose.connect(configDB.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
 }
 
+run().catch(error => console.error(error))
 
 // === set body parser to accept POST form data ===
 app.use(bodyParser.json())
