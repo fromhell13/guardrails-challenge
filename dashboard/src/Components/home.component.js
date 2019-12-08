@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Badge from './badge.component'
 
 const Results = props => (
     <tr>
+        <td><Badge resultId={props.result._id} /></td>
         <td>{props.result.RepositoryName}</td>
         <td>{props.result.Status}</td>
         <td>{props.result.ScanningAt}</td>
@@ -43,6 +45,7 @@ export default class Home extends Component{
                 <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
+                            <th>Findings</th>
                             <th>RepositoryName</th>
                             <th>Status</th>
                             <th>ScanningAt</th>

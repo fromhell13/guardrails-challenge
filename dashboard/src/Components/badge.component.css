@@ -1,0 +1,22 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .badge {
+      display: inline-block;
+      min-width: 16px; /* pixel unit */
+      padding: 35px 50px; /* pixel unit */
+      border-radius: 50%;
+      font-size: 75px;
+      text-align: center;
+      
+      color: #fefefe;
+  }
+  .badge.red{
+    background:  red;
+  }
+  .badge.grey{
+    background: gray;
+  }
