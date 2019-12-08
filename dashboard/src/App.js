@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Components/home.component'
 import Details from './Components/detail.component'
 import Form from './Components/form.component'
+import Sample from './Components/sample.component'
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,6 +24,9 @@ class App extends Component {
                 <li className="navbar-item">
                   <Link to="/create" className="nav-link">Add New</Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/sample" className="nav-link">Sample Findings Data</Link>
+                </li>
               </ul>
             </div>
           </nav>
@@ -30,6 +34,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route strict path="/show/:resultId" component={Details} />
           <Route path="/create" component={Form} />
+          <Route path="/sample" component={Sample} />
         </div>
       </Router>
     );
