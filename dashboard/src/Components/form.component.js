@@ -9,7 +9,7 @@ export default class Form extends Component{
         this.state = {
             RepositoryName: '',
             Status:'default',
-            Findings:[],
+            Findings:'',
             QueuedAt: new Date(),
             ScanningAt: new Date(),
             FinishedAt: new Date()
@@ -24,12 +24,13 @@ export default class Form extends Component{
         console.log('submitted data: ', JSON.stringify(data));
         event.preventDefault();
 
-        fetch('http://localhost:8080/result', {
-            method: 'POST',
-            body: data,
-            headers:{
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/result',
+            headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            data: data
         })
         .then((data) => {
             console.log('Insert status: ', data);

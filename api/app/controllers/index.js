@@ -1,11 +1,12 @@
 const Result = require('../models')
 
 exports.create = async (req,res) => {
+    
     try{
         const result = new Result({
             'Status': req.body.Status,
             'RepositoryName': req.body.RepositoryName,
-            'Findings': JSON.parse(req.body.Findings),
+            'Findings': (req.body.Findings)? JSON.parse(req.body.Findings) : [],
             'QueuedAt': req.body.QueuedAt,
             'ScanningAt': req.body.ScanningAt,
             'FinishedAt': req.body.FinishedAt
@@ -13,6 +14,7 @@ exports.create = async (req,res) => {
         let saveResult = await result.save()
         res.send(saveResult)
     }catch(err){
+        console.log(err.message)
         res.status(500).send({message: err.message})
     }
     
