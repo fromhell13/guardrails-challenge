@@ -5,7 +5,7 @@ exports.create = async (req,res) => {
         const result = new Result({
             'Status': req.body.Status,
             'RepositoryName': req.body.RepositoryName,
-            'Findings': req.body.Findings,
+            'Findings': JSON.parse(req.body.Findings),
             'QueuedAt': req.body.QueuedAt,
             'ScanningAt': req.body.ScanningAt,
             'FinishedAt': req.body.FinishedAt
