@@ -14,7 +14,7 @@ export default class Badge extends Component{
         .then(response => {
             this.setState({badge: response.data.Findings});
         })
-        .catch(function (error) {
+        .catch((error) => {
             console.log(error);
         })
     }
